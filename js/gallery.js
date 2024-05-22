@@ -63,10 +63,9 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
-// знаходимо список, де будемо створювати галерею
+
 const gallery = document.querySelector('.gallery');
 
-// створюємо з масиву галерею та динамічно додаємо розмітку у html
 function galleryTemplate(obj) {
     return `<li class="gallery-item">
         <a class="gallery-link" href="${obj.original}">
@@ -85,15 +84,12 @@ function galleriesTemplate(arr) {
 const markup = galleriesTemplate(images);
 gallery.innerHTML = markup;
 
-// вішаємо слухача події click на батьківський елемент всієї галереї (ul) використовуючи спливання (делегування) та прибираємо дії браузера за замовчуванням
 gallery.addEventListener('click', onClickImage);
 function onClickImage(event) {
     event.preventDefault();
-// перевіряємо настання події на цільовому елементі
     if (event.target.nodeName !== "IMG") {
         return;
-    }
-// використовуємо бібліотеку Lightbox
+      }
     const selectedImage = basicLightbox.create(`
     <img width="1112" height="640" src="${event.target.dataset.source}">`);
     selectedImage.show();
